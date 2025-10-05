@@ -4,10 +4,17 @@
 #include <sld.hpp>
 #include <sld-math.hpp>
 
+#ifndef    SLD_PHYSICS_ENTITY_STACK_SIZE_KB
+#   define SLD_PHYSICS_ENTITY_STACK_SIZE_KB 64
+#endif
+#ifndef     SLD_PHYSICS_TAG_SIZE
+    #define SLD_PHYSICS_TAG_SIZE            32
+#endif
 namespace sld {
 
     struct phys_entity_t     : u32_t { };
     struct phys_components_t : u32_t { };
+    struct phys_tag_t;
 
     enum phys_component_e32 {
         phys_component_e32_none         = 0,
@@ -29,7 +36,7 @@ namespace sld {
     struct phys_3d_velocity_t;
     struct phys_3d_acceleration_t;
 
-    phys_2d_simulation_t* phys_2d_simulation_create();
+    phys_2d_simulation_t* phys_2d_simulation_create(const u64 reservation_size, const u64 arena_size);
 
 
 };
